@@ -1,4 +1,8 @@
-Rainbench is designed to test the throughput of different reactive libraries. Its a simple benchmark that fills a bucket with raindrops. \nEach rain drop creates a subcription and the observable gets updated every microsecond, which should trigger a rebuild of each rain drop with its new position. \nThe number of raindrops and the capacity of the bucket can be adjusted. The benchmark will run until the bucket is full. The time it takes to fill the bucket is recorded and displayed at the end of the benchmark.
+Rainbench is designed to test the throughput of different reactive libraries. It's a simple benchmark that fills a bucket with raindrops.
+
+Each rain drop creates a subcription and the observable gets updated every millisecond, which should trigger a rebuild of each rain drop widget with its new position.
+
+The number of raindrops and the capacity of the bucket can be adjusted. The benchmark will run until the bucket is full. The time it takes to fill the bucket is recorded and displayed at the end of the benchmark.
 
 ## Results
 
