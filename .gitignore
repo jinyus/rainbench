@@ -109,3 +109,5 @@ app.*.map.json
 !.idea/codeStyles/
 !.idea/dictionaries/
 !.idea/runConfigurations/
+
+pubspec_overrides.yaml
