@@ -5,7 +5,7 @@ Rainbench is designed to test the throughput of different reactive libraries. It
 -   Release mode on linux
 -   Benchmark is restarted after each run to prevent GC interference
 -   value_LB == value_listenable_builder
--   stream_builder and value_LB are not perfect comparisons as they can only listen to 1 observable at a time... but they serve as a good baseline
+-   `stream_builder` and `value_LB` are not perfect comparisons as they can only listen to 1 observable at a time... but they serve as a good baseline
 
 ### 5k raindrops and a bucket capacity of 20k
 
