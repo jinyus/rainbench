@@ -1,3 +1,0 @@
-dependency_overrides:
-    state_beacon:
-        path: ../dart_beacon/state_beacon
