@@ -14,31 +14,27 @@ class StreamRain extends StatelessWidget {
 
         // Raining drops based on beacon position
         for (int i = 0; i < rainDropCount.peek(); i++)
-          Builder(
-            builder: (context) {
+          StreamBuilder(
+            stream: streamObservable.stream,
+            builder: (ctx, snapshot) {
+              final val = snapshot.data;
+
+              if (val == null) return const SizedBox.shrink();
+
               final startingLeftOffset = (screenWidth - totalRowWidth) / 2;
               final row = i ~/ columns;
               final col = i % columns;
 
-              return StreamBuilder(
-                stream: streamObservable.stream,
-                builder: (ctx, snapshot) {
-                  final val = snapshot.data;
-
-                  if (val == null) return const SizedBox.shrink();
-
-                  return Positioned(
-                    left: startingLeftOffset + col * (dropWidth + dropSpacing),
-                    top: initialTopOffset +
-                        row * dropSpacing +
-                        200.0 * (1 + (val * .1)),
-                    child: const Icon(
-                      Icons.water_drop,
-                      size: dropWidth,
-                      color: Colors.blue,
-                    ),
-                  );
-                },
+              return Positioned(
+                left: startingLeftOffset + col * (dropWidth + dropSpacing),
+                top: initialTopOffset +
+                    row * dropSpacing +
+                    200.0 * (1 + (val * .1)),
+                child: const Icon(
+                  Icons.water_drop,
+                  size: dropWidth,
+                  color: Colors.blue,
+                ),
               );
             },
           ),

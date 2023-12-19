@@ -14,26 +14,22 @@ class ValueNotifierRain extends StatelessWidget {
 
         // Raining drops based on beacon position
         for (int i = 0; i < rainDropCount.peek(); i++)
-          Builder(
-            builder: (context) {
+          ValueListenableBuilder(
+            valueListenable: valueNotifierObservable.observable,
+            builder: (ctx, val, child) {
               final startingLeftOffset = (screenWidth - totalRowWidth) / 2;
               final row = i ~/ columns;
               final col = i % columns;
-              return ValueListenableBuilder(
-                valueListenable: valueNotifierObservable.observable,
-                builder: (ctx, val, child) {
-                  return Positioned(
-                    left: startingLeftOffset + col * (dropWidth + dropSpacing),
-                    top: initialTopOffset +
-                        row * dropSpacing +
-                        200.0 * (1 + (val * .1)),
-                    child: const Icon(
-                      Icons.water_drop,
-                      size: dropWidth,
-                      color: Colors.blue,
-                    ),
-                  );
-                },
+              return Positioned(
+                left: startingLeftOffset + col * (dropWidth + dropSpacing),
+                top: initialTopOffset +
+                    row * dropSpacing +
+                    200.0 * (1 + (val * .1)),
+                child: const Icon(
+                  Icons.water_drop,
+                  size: dropWidth,
+                  color: Colors.blue,
+                ),
               );
             },
           ),
@@ -66,6 +62,8 @@ class ContextWatchValueNotifierRain extends StatelessWidget {
               final val = cw.ValueListenableContextWatchExtension(
                 valueNotifierObservable.observable,
               ).watch(context);
+
+              print('$val ${valueNotifierObservable.observable.value}');
 
               return Positioned(
                 left: startingLeftOffset + col * (dropWidth + dropSpacing),
