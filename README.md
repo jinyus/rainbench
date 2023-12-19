@@ -30,3 +30,8 @@ The number of raindrops and the capacity of the bucket can be adjusted. The benc
 | mobx           | 2849                              | 10.53s                             |
 | stream_builder | 1867                              | 16.01s                             |
 | signals        | 1798                              | 16.69s                             |
+
+## Video of the 20k run:
+
+https://github.com/jinyus/rainbench/assets/30532952/40946543-74cd-45f3-a726-27f9ddc1bd6a
+
