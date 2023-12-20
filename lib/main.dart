@@ -2,9 +2,11 @@
 
 import 'dart:async';
 
+import 'package:context_watch/context_watch.dart';
 import 'package:flutter/material.dart';
 import 'package:rainbench/observable.dart';
 import 'package:rainbench/rain/rain.dart';
+import 'package:rainbench/rain/solidart.dart';
 import 'package:signals/signals_flutter.dart';
 import 'package:state_beacon/state_beacon.dart';
 
@@ -45,8 +47,6 @@ class ToolBar extends StatefulWidget {
     30000: '30k',
     50000: '50k',
     100000: '100k',
-    200000: '200k',
-    500000: '500k',
   };
   static const List<double> rainSpeeds = [0.05, 0.1, 0.15, 0.2];
 
@@ -60,127 +60,126 @@ class _ToolBarState extends State<ToolBar> {
   @override
   Widget build(BuildContext context) {
     final obs = currentObservable.watch(context);
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text('Raindrops: '),
-        DropdownButton<int>(
-          value: rainDropCount.watch(context),
-          onChanged: (newValue) {
-            rainDropCount.set(newValue!);
-          },
-          items:
-              ToolBar.rainDropCounts.keys.map<DropdownMenuItem<int>>((int key) {
-            return DropdownMenuItem<int>(
-              value: key,
-              child: Text(ToolBar.rainDropCounts[key]!),
-            );
-          }).toList(),
-        ),
-        Text('Bucket Capacity: '),
-        DropdownButton<int>(
-          value: _bucketCapacity.watch(context),
-          onChanged: (newValue) {
-            _bucketCapacity.set(newValue!);
-          },
-          items: ToolBar.bucketCapacities.keys
-              .map<DropdownMenuItem<int>>((int key) {
-            return DropdownMenuItem<int>(
-              value: key,
-              child: Text(ToolBar.bucketCapacities[key]!),
-            );
-          }).toList(),
-        ),
-        Text('Type: '),
-        DropdownButton<String>(
-          value: currentObservable.watch(context).type.name,
-          onChanged: (newValue) {
-            final type = switch (newValue!) {
-              _ when newValue == ObservableType.beacon.name => beaconObservable,
-              _ when newValue == ObservableType.signal.name => signalObservable,
-              _ when newValue == ObservableType.stream.name => streamObservable,
-              _ when newValue == ObservableType.mobx.name => mobxObservable,
-              _ when newValue == ObservableType.valueNotifier.name =>
-                valueNotifierObservable,
-              _ => throw Exception('Unknown type: $newValue'),
-            };
-            currentObservable.set(type);
-          },
-          items: ObservableType.values.map<DropdownMenuItem<String>>((type) {
-            return DropdownMenuItem<String>(
-              value: type.name,
-              child: Text(type.name),
-            );
-          }).toList(),
-        ),
-        const SizedBox(width: 20.0),
-        ElevatedButton(
-          onPressed: () {
-            showBeacon.value = true;
-            obs.dispose();
-            unsub?.call();
-            unsub = obs.subscribe((_) {
-              if (obs.value >= 25) {
-                // Reset raindrop position
-                obs.value = 0.0;
+    return SizedBox(
+      width: double.infinity,
+      child: Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        runAlignment: WrapAlignment.center,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          Text('Raindrops: '),
+          DropdownButton<int>(
+            value: rainDropCount.watch(context),
+            onChanged: (newValue) {
+              rainDropCount.set(newValue!);
+            },
+            items: ToolBar.rainDropCounts.keys
+                .map<DropdownMenuItem<int>>((int key) {
+              return DropdownMenuItem<int>(
+                value: key,
+                child: Text(ToolBar.rainDropCounts[key]!),
+              );
+            }).toList(),
+          ),
+          Text('Bucket Capacity: '),
+          DropdownButton(
+            value: _bucketCapacity.watch(context),
+            onChanged: (newValue) {
+              _bucketCapacity.set(newValue!);
+            },
+            items: ToolBar.bucketCapacities.keys.map((int key) {
+              return DropdownMenuItem<int>(
+                value: key,
+                child: Text(ToolBar.bucketCapacities[key]!),
+              );
+            }).toList(),
+          ),
+          Text('Type: '),
+          DropdownButton(
+            value: currentObservable.watch(context).type.name,
+            onChanged: (newValue) {
+              final observable = Observable.fromString(newValue);
+              currentObservable.set(observable);
+            },
+            items: ObservableType.values.map((type) {
+              return DropdownMenuItem(
+                value: type.name,
+                child: Text(type.name),
+              );
+            }).toList(),
+          ),
+          const SizedBox(width: 20.0),
+          ElevatedButton(
+            onPressed: () {
+              showBeacon.value = true;
+              obs.dispose();
+              unsub?.call();
+              unsub = obs.subscribe((v) {
+                // print('${currentObservable.peek()} with $v');
+                if (obs.value >= 25) {
+                  // Reset raindrop position
+                  obs.value = 0.0;
 
-                // Increment bucket fill
-                bucketFillBeacon.value += rainDropCount.peek();
+                  // Increment bucket fill
+                  bucketFillBeacon.value += rainDropCount.peek();
 
-                if (bucketFillBeacon.value >= _bucketCapacity.peek()) {
-                  stopwatch.stop(); // Stop timer when bucket full
-                  timer?.cancel(); // Stop raining
-                  unsub?.call(); // Stop listening to raindrop position
+                  if (bucketFillBeacon.value >= _bucketCapacity.peek()) {
+                    stopwatch.stop(); // Stop timer when bucket full
+                    timer?.cancel(); // Stop raining
+                    unsub?.call(); // Stop listening to raindrop position
 
-                  final tookSeconds = stopwatch.elapsed.inMilliseconds / 1000.0;
-                  final raindropsPerSecond =
-                      (_bucketCapacity.peek() / tookSeconds).toStringAsFixed(2);
+                    final tookSeconds =
+                        stopwatch.elapsed.inMilliseconds / 1000.0;
+                    final raindropsPerSecond =
+                        (_bucketCapacity.peek() / tookSeconds)
+                            .toStringAsFixed(2);
 
-                  showBeacon.value = false;
+                    showBeacon.value = false;
 
-                  showDialog<AlertDialog>(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text('Benchmark Finished!'),
-                      content: Text(
-                        'Time to fill bucket: $tookSeconds seconds'
-                        '\n$raindropsPerSecond raindrops/sec',
-                        style: const TextStyle(fontSize: 30.0),
+                    showDialog<AlertDialog>(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text('Benchmark Finished!'),
+                        content: Text(
+                          'Time to fill bucket: $tookSeconds seconds'
+                          '\n$raindropsPerSecond raindrops/sec',
+                          style: const TextStyle(fontSize: 30.0),
+                        ),
                       ),
-                    ),
-                  );
+                    );
+                  }
                 }
-              }
-            });
+              });
 
-            obs.value = 0.0;
-            bucketFillBeacon.value = 0.0;
-            stopwatch
-              ..reset()
-              ..start();
+              obs.value = 0.0;
+              bucketFillBeacon.value = 0.0;
+              stopwatch
+                ..reset()
+                ..start();
 
-            timer?.cancel();
-            timer = Timer.periodic(const Duration(milliseconds: 1), (timer) {
-              // Update raindrop position
-              obs.value += _rainSpeed;
-            });
-          },
-          child: const Text('Start'),
-        ),
-        const SizedBox(width: 20.0),
-        ElevatedButton(
-          onPressed: () {
-            unsub?.call();
-            obs.value = 0.0;
-            bucketFillBeacon.value = 0.0;
-            stopwatch.reset();
-            timer?.cancel();
-            showBeacon.value = false;
-            obs.dispose();
-          },
-          child: const Text('Reset'),
-        ),
-      ],
+              timer?.cancel();
+              timer = Timer.periodic(const Duration(milliseconds: 1), (timer) {
+                // Update raindrop position
+                obs.value += _rainSpeed;
+              });
+            },
+            child: const Text('Start'),
+          ),
+          const SizedBox(width: 20.0),
+          ElevatedButton(
+            onPressed: () {
+              unsub?.call();
+              obs.value = 0.0;
+              bucketFillBeacon.value = 0.0;
+              stopwatch.reset();
+              timer?.cancel();
+              showBeacon.value = false;
+              obs.dispose();
+            },
+            child: const Text('Reset'),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -248,7 +247,7 @@ class Clouds extends StatelessWidget {
 const emptyText = 'Rainbench is designed to test the throughput of '
     "different reactive libraries. It's a simple benchmark "
     'that fills a bucket with raindrops. \nEach rain drop creates a subcription '
-    'and the observable gets updated every microsecond, which should trigger a '
+    'and the observable gets updated every millisecond, which should trigger a '
     'rebuild of each rain drop with its new position. \nThe number of raindrops '
     'and the capacity of the bucket can be adjusted. The benchmark '
     'will run until the bucket is full. The time it takes to fill '
@@ -263,14 +262,16 @@ class BenchmarkPage extends StatelessWidget {
     final obs = currentObservable.watch(context);
     final style = TextStyle(fontSize: 30.0);
     return Scaffold(
-      appBar: AppBar(title: ToolBar()),
+      appBar: AppBar(title: ToolBar(), toolbarHeight: 100),
       body: show
-          ? switch (obs) {
-              BeaconObservable() => BeaconRain(),
-              SignalObservable() => SignlaRain(),
-              StreamObservable() => StreamRain(),
-              ValueNotifierObservable() => ValueNotifierRain(),
-              MobxObservable() => MobXRain(),
+          ? switch (obs.type) {
+              ObservableType.beacon => BeaconRain(),
+              ObservableType.signal => SignlaRain(),
+              ObservableType.stream => StreamRain(),
+              ObservableType.contextWatchVN => ContextWatchValueNotifierRain(),
+              ObservableType.valueNotifier => ValueNotifierRain(),
+              ObservableType.mobx => MobXRain(),
+              ObservableType.solidart => SolidartRain(),
             }
           : Center(
               child: SizedBox(
@@ -278,12 +279,15 @@ class BenchmarkPage extends StatelessWidget {
                 child: Text(emptyText, style: style),
               ),
             ),
-      // body: RainingBucket(),
     );
   }
 }
 
 void main() {
   disableSignalsDevTools();
-  runApp(const MaterialApp(home: BenchmarkPage()));
+  runApp(
+    ContextWatchRoot(
+      child: const MaterialApp(home: BenchmarkPage()),
+    ),
+  );
 }

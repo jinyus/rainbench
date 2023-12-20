@@ -3,17 +3,32 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_solidart/flutter_solidart.dart' as solid;
 import 'package:mobx/mobx.dart' as mx;
 import 'package:signals/signals_flutter.dart';
 import 'package:state_beacon/state_beacon.dart';
 
-enum ObservableType { beacon, signal, stream, valueNotifier, mobx }
+enum ObservableType {
+  beacon('state_beacon'),
+  signal('signals'),
+  stream('stream'),
+  valueNotifier('value_notifier'),
+  contextWatchVN('context_watch VN'),
+  mobx('mobx'),
+  solidart('solidart');
+
+  const ObservableType(this.name);
+
+  final String name;
+}
 
 final beaconObservable = BeaconObservable();
 final signalObservable = SignalObservable();
 final streamObservable = StreamObservable();
 final valueNotifierObservable = ValueNotifierObservable();
+final contextWatchVNObservable = ContextWatchValueNotifierObservable();
 final mobxObservable = MobxObservable();
+final solidartObservable = SolidartObservable();
 
 sealed class Observable {
   ObservableType get type;
@@ -21,6 +36,20 @@ sealed class Observable {
   double get value;
   VoidCallback subscribe(void Function(double) callback);
   void dispose();
+
+  static Observable fromString(String? type) {
+    final obsType = ObservableType.values.firstWhere((e) => e.name == type);
+
+    return switch (obsType) {
+      ObservableType.beacon => beaconObservable,
+      ObservableType.signal => signalObservable,
+      ObservableType.stream => streamObservable,
+      ObservableType.valueNotifier => valueNotifierObservable,
+      ObservableType.contextWatchVN => contextWatchVNObservable,
+      ObservableType.mobx => mobxObservable,
+      ObservableType.solidart => solidartObservable,
+    };
+  }
 }
 
 class BeaconObservable implements Observable {
@@ -140,6 +169,11 @@ class ValueNotifierObservable implements Observable {
   }
 }
 
+class ContextWatchValueNotifierObservable extends ValueNotifierObservable {
+  @override
+  final type = ObservableType.contextWatchVN;
+}
+
 class MobxObservable implements Observable {
   var _observable = mx.Observable(0.0);
 
@@ -180,5 +214,31 @@ class MobxObservable implements Observable {
   @override
   void dispose() {
     _observable = mx.Observable(0.0);
+  }
+}
+
+class SolidartObservable implements Observable {
+  var _observable = solid.Signal(0.0);
+
+  solid.Signal<double> get observable => _observable;
+
+  @override
+  double get value => _observable.value;
+
+  @override
+  set value(double value) => _observable.set(value);
+
+  @override
+  VoidCallback subscribe(void Function(double p1) callback) {
+    return _observable.observe((p, n) => callback(n));
+  }
+
+  @override
+  ObservableType get type => ObservableType.solidart;
+
+  @override
+  void dispose() {
+    _observable.dispose();
+    _observable = solid.Signal(0.0);
   }
 }

@@ -17,6 +17,7 @@ class ValueNotifierRain extends StatelessWidget {
           ValueListenableBuilder(
             valueListenable: valueNotifierObservable.observable,
             builder: (ctx, val, child) {
+              // print('VN $val');
               final startingLeftOffset = (screenWidth - totalRowWidth) / 2;
               final row = i ~/ columns;
               final col = i % columns;
@@ -60,10 +61,10 @@ class ContextWatchValueNotifierRain extends StatelessWidget {
               final row = i ~/ columns;
               final col = i % columns;
               final val = cw.ValueListenableContextWatchExtension(
-                valueNotifierObservable.observable,
+                contextWatchVNObservable.observable,
               ).watch(context);
 
-              print('$val ${valueNotifierObservable.observable.value}');
+              // print('val: $val');
 
               return Positioned(
                 left: startingLeftOffset + col * (dropWidth + dropSpacing),
