@@ -25,4 +25,6 @@ The number of raindrops and the capacity of the bucket can be adjusted. The benc
 
 ## Video:
 
-https://github.com/jinyus/rainbench/assets/30532952/40946543-74cd-45f3-a726-27f9ddc1bd6a
+https://github.com/jinyus/rainbench/assets/30532952/846d8783-2a9b-458b-a596-8cf421d5358f
+
+
