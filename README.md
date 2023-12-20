@@ -11,26 +11,18 @@ The number of raindrops and the capacity of the bucket can be adjusted. The benc
 -   value_LB == value_listenable_builder
 -   `stream_builder` and `value_LB` are not perfect comparisons as they can only listen to 1 observable at a time... but they serve as a good baseline
 
-### 5k raindrops and a bucket capacity of 20k
-
-| Library                                               | Raindrops/s | Time to fill bucket |
-| ----------------------------------------------------- | ----------- | ------------------- |
-| value_LB                                              | 8838        | 2.26s               |
-| stream_builder                                        | 8035        | 2.49s               |
-| [state_beacon](https://pub.dev/packages/state_beacon) | 7837        | 2.55s               |
-| [signals](https://pub.dev/packages/signals)           | 7457        | 2.68s               |
-| [mobx](https://pub.dev/packages/flutter_mobx)         | 6194        | 3.23s               |
-
 ### 20k raindrops and a bucket capacity of 30k
 
-| Library                                               | Raindrops/s | Time to fill bucket |
-| ----------------------------------------------------- | ----------- | ------------------- |
-| [state_beacon](https://pub.dev/packages/state_beacon) | 5778        | 5.19s               |
-| value_LB                                              | 3967        | 7.56s               |
-| [mobx](https://pub.dev/packages/flutter_mobx)         | 2849        | 10.53s              |
-| stream_builder                                        | 1867        | 16.01s              |
-| [signals](https://pub.dev/packages/signals)           | 1798        | 16.69s              |
+| Library                                                 | Raindrops/s | Time to fill bucket |
+| ------------------------------------------------------- | ----------- | ------------------- |
+| [state_beacon](https://pub.dev/packages/state_beacon)   | 6112        | 4.91s               |
+| value_LB                                                | 5301        | 5.66s               |
+| [mobx](https://pub.dev/packages/flutter_mobx)           | 4463        | 6.72s               |
+| [signals](https://pub.dev/packages/signals)             | 1868        | 16.06s              |
+| stream_builder                                          | 1597        | 18.78s              |
+| [context_watch](https://pub.dev/packages/context_watch) | 1245        | 24.01s              |
+| [solidart](https://pub.dev/packages/solidart)           | DNF         | DNF                 |
 
-## Video of the 20k run:
+## Video:
 
 https://github.com/jinyus/rainbench/assets/30532952/40946543-74cd-45f3-a726-27f9ddc1bd6a
