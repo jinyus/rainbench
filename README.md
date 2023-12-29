@@ -13,18 +13,16 @@ The number of raindrops and the capacity of the bucket can be adjusted. The benc
 
 ### 20k raindrops and a bucket capacity of 30k
 
-| Library                                                 | Raindrops/s | Time to fill bucket |
-| ------------------------------------------------------- | ----------- | ------------------- |
-| [state_beacon](https://pub.dev/packages/state_beacon)   | 6112        | 4.91s               |
-| value_LB                                                | 5301        | 5.66s               |
-| [mobx](https://pub.dev/packages/flutter_mobx)           | 4463        | 6.72s               |
-| [signals](https://pub.dev/packages/signals)             | 1868        | 16.06s              |
-| stream_builder                                          | 1597        | 18.78s              |
-| [context_watch](https://pub.dev/packages/context_watch) | 1245        | 24.01s              |
-| [solidart](https://pub.dev/packages/solidart)           | DNF         | DNF                 |
+| Library                                                 | Raindrops/s                                                                             | Time to fill bucket |
+| ------------------------------------------------------- | --------------------------------------------------------------------------------------- | ------------------- |
+| [state_beacon](https://pub.dev/packages/state_beacon)   | 6112                                                                                    | 4.91s               |
+| value_LB                                                | 5301                                                                                    | 5.66s               |
+| [mobx](https://pub.dev/packages/flutter_mobx)           | 4463                                                                                    | 6.72s               |
+| [signals](https://pub.dev/packages/signals)             | 1868                                                                                    | 16.06s              |
+| stream_builder                                          | 1597                                                                                    | 18.78s              |
+| [context_watch](https://pub.dev/packages/context_watch) | 1245                                                                                    | 24.01s              |
+| [solidart](https://pub.dev/packages/solidart)           | [DNF](https://github.com/jinyus/dart_beacon/blob/main/assets/solidart_dnf.mp4?raw=true) | DNF                 |
 
 ## Video:
 
 https://github.com/jinyus/rainbench/assets/30532952/846d8783-2a9b-458b-a596-8cf421d5358f
-
-
