@@ -113,7 +113,6 @@ class _ToolBarState extends State<ToolBar> {
           ElevatedButton(
             onPressed: () {
               showBeacon.value = true;
-              obs.dispose();
               unsub?.call();
               unsub = obs.subscribe((v) {
                 // print('${currentObservable.peek()} with $v');
@@ -128,6 +127,7 @@ class _ToolBarState extends State<ToolBar> {
                     stopwatch.stop(); // Stop timer when bucket full
                     timer?.cancel(); // Stop raining
                     unsub?.call(); // Stop listening to raindrop position
+                    obs.dispose();
 
                     final tookSeconds =
                         stopwatch.elapsed.inMilliseconds / 1000.0;
