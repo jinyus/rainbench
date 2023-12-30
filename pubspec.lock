@@ -140,10 +140,10 @@ packages:
     dependency: "direct main"
     description:
       name: mobx
-      sha256: "537bee828f30a971ffd7d29d8e22bbdec5c9f5899ad4b01f3206a21eeb5c75de"
+      sha256: "6b467f91bfc534922ea670db69a1972d28bd9754085892decb5bce19f2c8d0d5"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.3"
+    version: "2.3.0"
   mocktail:
     dependency: "direct dev"
     description:
