@@ -13,6 +13,7 @@ The number of raindrops and the capacity of the bucket can be adjusted. The benc
 -   Benchmark is restarted after each run to prevent GC interference
 -   value_LB == value_listenable_builder
 -   `stream_builder` and `value_LB` are not perfect comparisons as they can only listen to 1 observable at a time... but they serve as a good baseline
+-   `solidart` implementation uses `SolidBuilder` which can only listen to a fixed number of observables so it's not a perfect comparison either.
 
 ### 20k raindrops and a bucket capacity of 30k
 
