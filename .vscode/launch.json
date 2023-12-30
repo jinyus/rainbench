@@ -29,6 +29,19 @@
         "--target",
         "lib/main.dart"
       ]
+    },
+    {
+      "name": "Release bench",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "args": [
+        "--release",
+        "-d",
+        "linux",
+        "--target",
+        "lib/main.dart"
+      ]
     }
   ]
 }

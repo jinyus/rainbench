@@ -18,17 +18,12 @@ class SolidartRain extends StatelessWidget {
 
         // Raining drops based on beacon position
         for (int i = 0; i < rainDropCount.peek(); i++)
-          Solid(
-            providers: [
-              Provider<Signal<double>>(
-                create: () => solidartObservable.observable,
-              ),
-            ],
-            builder: (ctx) {
+          SignalBuilder(
+            signal: solidartObservable.observable,
+            builder: (_, val, __) {
               final startingLeftOffset = (screenWidth - totalRowWidth) / 2;
               final row = i ~/ columns;
               final col = i % columns;
-              final val = ctx.observe<double>();
               return Positioned(
                 left: startingLeftOffset + col * (dropWidth + dropSpacing),
                 top: initialTopOffset +

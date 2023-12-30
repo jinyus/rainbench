@@ -217,10 +217,10 @@ packages:
     dependency: transitive
     description:
       name: solidart
-      sha256: "3aaec47fcb5c2816e61976d75cb4a034aa645039c1aba1ff0028401f3ce6acc3"
+      sha256: "2d15608b60fff6cf1ed39b4161bde03caddacf6656275d3bedeb3605edfc60e9"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.3"
+    version: "1.5.4"
   source_span:
     dependency: transitive
     description:

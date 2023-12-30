@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:context_watch/context_watch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_solidart/flutter_solidart.dart';
 import 'package:rainbench/observable.dart';
 import 'package:rainbench/rain/rain.dart';
 import 'package:rainbench/rain/solidart.dart';
@@ -285,6 +286,7 @@ class BenchmarkPage extends StatelessWidget {
 
 void main() {
   disableSignalsDevTools();
+  SolidartConfig.devToolsEnabled = false;
   runApp(
     ContextWatchRoot(
       child: const MaterialApp(home: BenchmarkPage()),
