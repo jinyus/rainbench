@@ -4,6 +4,9 @@ Each rain drop creates a subcription and the observable gets updated every milli
 
 The number of raindrops and the capacity of the bucket can be adjusted. The benchmark will run until the bucket is full. The time it takes to fill the bucket is recorded and displayed at the end of the benchmark.
 
+> [!NOTE]  
+> This is a stress test so don't put too much stock in the results as real apps will typically have a lot less updates/subscriptions.
+
 ## Results
 
 -   Release mode on linux
