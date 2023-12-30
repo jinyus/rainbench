@@ -101,8 +101,7 @@ class SignalObservable implements Observable {
 
   @override
   void dispose() {
-    _observable.dispose(); //not implemented yet
-    _observable = signal(0.0);
+    _observable.dispose();
   }
 }
 
