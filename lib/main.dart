@@ -267,6 +267,7 @@ class BenchmarkPage extends StatelessWidget {
       body: show
           ? switch (obs.type) {
               ObservableType.beacon => BeaconRain(),
+              ObservableType.beaconVN => BeaconValueNotifierRain(),
               ObservableType.signal => SignlaRain(),
               ObservableType.stream => StreamRain(),
               ObservableType.contextWatchVN => ContextWatchValueNotifierRain(),

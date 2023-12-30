@@ -10,6 +10,7 @@ import 'package:state_beacon/state_beacon.dart';
 
 enum ObservableType {
   beacon('state_beacon'),
+  beaconVN('state_beacon VN'),
   signal('signals'),
   stream('stream'),
   valueNotifier('value_notifier'),
@@ -42,6 +43,7 @@ sealed class Observable {
 
     return switch (obsType) {
       ObservableType.beacon => beaconObservable,
+      ObservableType.beaconVN => beaconObservable,
       ObservableType.signal => signalObservable,
       ObservableType.stream => streamObservable,
       ObservableType.valueNotifier => valueNotifierObservable,
