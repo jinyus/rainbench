@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_solidart/flutter_solidart.dart';
 import 'package:rainbench/main.dart';
-import 'package:rainbench/observable.dart';
+import 'package:rainbench/observables/observable.dart';
 import 'package:rainbench/rain/rain.dart';
 
 class SolidartRain extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:context_watch/context_watch.dart' as cw;
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart' as fmx;
 import 'package:rainbench/main.dart';
-import 'package:rainbench/observable.dart';
+import 'package:rainbench/observables/observable.dart';
 import 'package:signals/signals_flutter.dart';
 
 part 'beacon.dart';

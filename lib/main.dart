@@ -1,11 +1,11 @@
-// ignore_for_file: prefer_int_literals, lines_longer_than_80_chars, prefer_const_constructors, inference_failure_on_instance_creation
+// ignore_for_file: lines_longer_than_80_chars, prefer_const_constructors, inference_failure_on_instance_creation
 
 import 'dart:async';
 
 import 'package:context_watch/context_watch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_solidart/flutter_solidart.dart';
-import 'package:rainbench/observable.dart';
+import 'package:rainbench/observables/observable.dart';
 import 'package:rainbench/rain/rain.dart';
 import 'package:rainbench/rain/solidart.dart';
 import 'package:signals/signals_flutter.dart';
