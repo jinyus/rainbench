@@ -14,7 +14,7 @@ dependencies:
     flutter_solidart: ^1.7.0
     mobx: ^2.3.0
     signals: ^2.1.10
-    state_beacon: ^0.14.6
+    state_beacon: ^0.19.0
 
 dev_dependencies:
     very_good_analysis: ^5.1.0
