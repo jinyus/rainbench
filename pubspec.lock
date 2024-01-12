@@ -135,10 +135,10 @@ packages:
     dependency: "direct main"
     description:
       name: state_beacon
-      sha256: d399ef3fc8a3b9916abfe1089f59d52737c7d4e30447d3e96051f8f242e46085
+      sha256: "5c9fe2e418255d6e4aa1535f92af812496774e402863683a012fe373c5e549a3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.14.6"
+    version: "0.20.1"
   vector_math:
     dependency: transitive
     description:
