@@ -7,8 +7,8 @@ import 'package:signals/signals_flutter.dart';
 import 'package:state_beacon/state_beacon.dart';
 
 part 'beacon.dart';
-part 'signal.dart';
 part 'mobx.dart';
+part 'signal.dart';
 part 'solidart.dart';
 part 'stream.dart';
 part 'value_notifier.dart';
@@ -17,6 +17,7 @@ enum ObservableType {
   beacon('state_beacon'),
   beaconVN('state_beacon VN'),
   signal('signals'),
+  signalWatch('signals_watch'),
   stream('stream'),
   valueNotifier('value_notifier'),
   contextWatchVN('context_watch VN'),
@@ -29,7 +30,9 @@ enum ObservableType {
 }
 
 final beaconObservable = BeaconObservable();
+final beaconObservableVn = BeaconObservableVn();
 final signalObservable = SignalObservable();
+final signalObservableWatch = SignalObservableWatch();
 final streamObservable = StreamObservable();
 final valueNotifierObservable = ValueNotifierObservable();
 final contextWatchVNObservable = ContextWatchValueNotifierObservable();
@@ -48,8 +51,9 @@ sealed class Observable {
 
     return switch (obsType) {
       ObservableType.beacon => beaconObservable,
-      ObservableType.beaconVN => beaconObservable,
+      ObservableType.beaconVN => beaconObservableVn,
       ObservableType.signal => signalObservable,
+      ObservableType.signalWatch => signalObservableWatch,
       ObservableType.stream => streamObservable,
       ObservableType.valueNotifier => valueNotifierObservable,
       ObservableType.contextWatchVN => contextWatchVNObservable,

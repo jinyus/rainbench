@@ -99,7 +99,7 @@ class BeaconValueNotifierRain extends StatelessWidget {
         // Raining drops based on beacon position
         for (int i = 0; i < rainDropCount.peek(); i++)
           ValueListenableBuilder(
-            valueListenable: beaconObservable.observable,
+            valueListenable: beaconObservableVn.observable.toListenable(),
             builder: (ctx, val, child) {
               // print('VN $val');
               final startingLeftOffset = (screenWidth - totalRowWidth) / 2;

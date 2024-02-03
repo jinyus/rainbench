@@ -34,10 +34,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_mobx
-      sha256: "0f0463db8a1582ac88670bea6e4f58ab64a16d701bc7d2c27ea50c1dbe5aecdc"
+      sha256: "4a5d062ff85ed3759f4aac6410ff0ffae32e324b2e71ca722ae1b37b32e865f4"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.0+1"
+    version: "2.2.0+2"
   flutter_solidart:
     dependency: "direct main"
     description:
@@ -66,10 +66,10 @@ packages:
     dependency: "direct main"
     description:
       name: mobx
-      sha256: "6b467f91bfc534922ea670db69a1972d28bd9754085892decb5bce19f2c8d0d5"
+      sha256: "74ee54012dc7c1b3276eaa960a600a7418ef5f9997565deb8fca1fd88fb36b78"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.0+1"
   nested:
     dependency: transitive
     description:
@@ -98,26 +98,26 @@ packages:
     dependency: "direct main"
     description:
       name: signals
-      sha256: a7ba857a3a6955404e0ba868f86d8490d4c04604766c65ccefb7ba807ef70e42
+      sha256: fb15f1f60027799a5294e048a0c46e63efefeff4d5f5bfe9c61b2552ae852abf
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.10"
+    version: "3.0.0"
   signals_core:
     dependency: transitive
     description:
       name: signals_core
-      sha256: "96ca555b5881d1b7a7b521cec9ac64c56eacc75b54a79a76e73eb0d7bcbad82e"
+      sha256: "79ca5a5ebca67eba54f6b271f8ac7adf1250717fb5d947295e77dd34610cabac"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.6"
+    version: "3.0.0"
   signals_flutter:
     dependency: transitive
     description:
       name: signals_flutter
-      sha256: ab0e7376fd4b1fbf2f427d431bcf35a1eb2251308feb35f7b770b6f95b5677e6
+      sha256: "85b15c10a042da332d11ca989b8b038802fe2effe2c6dc29ecbd02becec1bba5"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.8"
+    version: "3.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -135,10 +135,18 @@ packages:
     dependency: "direct main"
     description:
       name: state_beacon
-      sha256: d399ef3fc8a3b9916abfe1089f59d52737c7d4e30447d3e96051f8f242e46085
+      sha256: aef3aa3505e02697716fda15c3a13f7051a5b46ef7ae9b4ed2a21dbc05b0a4aa
       url: "https://pub.dev"
     source: hosted
-    version: "0.14.6"
+    version: "0.33.1"
+  state_beacon_core:
+    dependency: transitive
+    description:
+      name: state_beacon_core
+      sha256: "99777ecd401e45bfd7f6e8af5bc31421a3f98ff6fd38b2430440b09c4f9057ed"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.33.1"
   vector_math:
     dependency: transitive
     description:
