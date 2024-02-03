@@ -8,7 +8,7 @@ The number of raindrops and the capacity of the bucket can be adjusted. The benc
 > [!NOTE]  
 > This is a stress test so don't put too much stock in the results as real apps will typically have a lot less updates/subscriptions.
 
-## Results
+## Results (Dec 30, 2023)
 
 -   Release mode on linux
 -   The benchmark is restarted after each run to prevent GC interference
