@@ -37,7 +37,7 @@ https://github.com/jinyus/rainbench/assets/30532952/e90f56b3-8ba9-44e8-996d-1c24
 - Updated to use the latest version of each library
 - Added Signals option to use Watch instead of context.watch.
 - Fixed capability to actually select the option to use ValueNotifier with State Beacon.
-- Tested in release mode on macOS (M1 Pro), with Flutter 2.16.9.
+- Tested in release mode on macOS (M1 Pro), with Flutter 3.16.9.
 - The benchmark is restarted after each run to prevent GC interference.
 - Used 20k raindrops and a bucket capacity of 200k for longer tests.
 
