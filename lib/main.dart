@@ -25,10 +25,10 @@ final bucketFillBeacon = Beacon.writable(0.0);
 const _rainSpeed = 0.1;
 
 // Number of raindrops to fill bucket
-final _bucketCapacity = Beacon.writable(20000);
+final _bucketCapacity = Beacon.writable(200000);
 
 // Number of raindrops falling
-final rainDropCount = Beacon.writable(5000);
+final rainDropCount = Beacon.writable(20000);
 
 final showBeacon = Beacon.writable(false);
 
@@ -40,6 +40,7 @@ class ToolBar extends StatefulWidget {
     5000: '5k',
     10000: '10k',
     20000: '20k',
+    100000: '100k',
   };
   static const bucketCapacities = {
     5000: '5k',
@@ -48,6 +49,7 @@ class ToolBar extends StatefulWidget {
     30000: '30k',
     50000: '50k',
     100000: '100k',
+    200000: '200k',
   };
   static const List<double> rainSpeeds = [0.05, 0.1, 0.15, 0.2];
 
@@ -268,7 +270,8 @@ class BenchmarkPage extends StatelessWidget {
           ? switch (obs.type) {
               ObservableType.beacon => BeaconRain(),
               ObservableType.beaconVN => BeaconValueNotifierRain(),
-              ObservableType.signal => SignlaRain(),
+              ObservableType.signal => SignalRain(),
+              ObservableType.signalWatch => SignalRainWatch(),
               ObservableType.stream => StreamRain(),
               ObservableType.contextWatchVN => ContextWatchValueNotifierRain(),
               ObservableType.valueNotifier => ValueNotifierRain(),

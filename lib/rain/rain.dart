@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart' as fmx;
 import 'package:rainbench/main.dart';
 import 'package:rainbench/observables/observable.dart';
 import 'package:signals/signals_flutter.dart';
+import 'package:state_beacon/state_beacon.dart';
 
 part 'beacon.dart';
 part 'mobx.dart';
