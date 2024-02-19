@@ -32,7 +32,8 @@ The number of raindrops and the capacity of the bucket can be adjusted. The benc
 
 https://github.com/jinyus/rainbench/assets/30532952/e90f56b3-8ba9-44e8-996d-1c240bc3fa70
 
-## RydMike - Updated test runs (Feb 3, 2024)
+## Updated test runs (Feb 3, 2024)
+### Third party results by [RydMike](https://twitter.com/RydMike)
 
 - Updated to use the latest version of each library
 - Added Signals option to use Watch instead of context.watch.
