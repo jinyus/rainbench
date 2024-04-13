@@ -39,8 +39,6 @@ class ValueNotifierRain extends StatelessWidget {
   }
 }
 
-// NOT WORKING:
-// Rebuilds but has the same value
 class ContextWatchValueNotifierRain extends StatelessWidget {
   const ContextWatchValueNotifierRain({super.key});
 
