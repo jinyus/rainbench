@@ -7,14 +7,14 @@ environment:
     sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
-    context_watch: ^3.1.1
+    context_watch: 3.1.1
     flutter:
         sdk: flutter
-    flutter_mobx: ^2.2.1+1
-    flutter_solidart: ^1.7.1
-    mobx: ^2.3.3+2
-    signals: ^5.0.0
-    state_beacon: ^0.45.0
+    flutter_mobx: 2.2.1+1
+    flutter_solidart: 1.7.1
+    mobx: 2.3.3+2
+    signals: 5.0.0
+    state_beacon: 0.45.0
 
 dev_dependencies:
     very_good_analysis: ^5.1.0
