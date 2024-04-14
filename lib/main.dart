@@ -248,8 +248,8 @@ class Clouds extends StatelessWidget {
 }
 
 const emptyText = 'Rainbench is designed to test the throughput of '
-    "different reactive libraries. It's a simple benchmark "
-    'that fills a bucket with raindrops. \nEach rain drop creates a subcription '
+    "different reactive libraries. It's a simple benchmark that "
+    'fills a bucket with raindrops. \nEach rain drop creates a subscription '
     'and the observable gets updated every millisecond, which should trigger a '
     'rebuild of each rain drop with its new position. \nThe number of raindrops '
     'and the capacity of the bucket can be adjusted. The benchmark '
@@ -289,10 +289,10 @@ class BenchmarkPage extends StatelessWidget {
 }
 
 void main() {
-  disableSignalsDevTools();
+  signalsDevToolsEnabled = false;
   SolidartConfig.devToolsEnabled = false;
   runApp(
-    ContextWatchRoot(
+    ContextWatch.root(
       child: const MaterialApp(home: BenchmarkPage()),
     ),
   );

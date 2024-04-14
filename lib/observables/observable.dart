@@ -16,8 +16,8 @@ part 'value_notifier.dart';
 enum ObservableType {
   beacon('state_beacon'),
   beaconVN('state_beacon VN'),
-  signal('signals'),
-  signalWatch('signals_watch'),
+  signal('signals watch(context)'),
+  signalWatch('signals Watch'),
   stream('stream'),
   valueNotifier('value_notifier'),
   contextWatchVN('context_watch VN'),
