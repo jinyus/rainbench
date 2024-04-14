@@ -4,7 +4,7 @@ class SignalObservable implements Observable {
   @override
   ObservableType get type => ObservableType.signal;
 
-  final _observable = signal(0.0);
+  var _observable = signal(0.0);
 
   Signal<double> get observable => _observable;
 
@@ -20,9 +20,9 @@ class SignalObservable implements Observable {
   }
 
   @override
-  @override
   void dispose() {
     _observable.dispose();
+    _observable = signal(0.0);
   }
 }
 
@@ -30,7 +30,7 @@ class SignalObservableWatch implements Observable {
   @override
   ObservableType get type => ObservableType.signalWatch;
 
-  final _observable = signal(0.0);
+  var _observable = signal(0.0);
 
   Signal<double> get observable => _observable;
 
@@ -46,8 +46,8 @@ class SignalObservableWatch implements Observable {
   }
 
   @override
-  @override
   void dispose() {
     _observable.dispose();
+    _observable = signal(0.0);
   }
 }
